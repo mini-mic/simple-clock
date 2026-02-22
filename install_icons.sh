@@ -34,24 +34,27 @@ echo "iOS icon installed."
 
 echo "Installing Android icons..."
 
-declare -A DENSITIES
-DENSITIES=(
-  ["mipmap-mdpi"]=48
-  ["mipmap-hdpi"]=72
-  ["mipmap-xhdpi"]=96
-  ["mipmap-xxhdpi"]=144
-  ["mipmap-xxxhdpi"]=192
-)
-
 ANDROID_RES="android/app/src/main/res"
 
-for DENSITY in "${!DENSITIES[@]}"; do
-  SIZE=${DENSITIES[$DENSITY]}
-  DIR="$ANDROID_RES/$DENSITY"
-  mkdir -p "$DIR"
-  sips -z $SIZE $SIZE "$SRC_TRANSPARENT" --out "$DIR/ic_launcher_foreground.png" > /dev/null
-  echo "  $DENSITY: ${SIZE}x${SIZE}"
-done
+mkdir -p "$ANDROID_RES/mipmap-mdpi"
+sips -z 48 48 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-mdpi/ic_launcher_foreground.png" > /dev/null
+sips -z 48 48 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-mdpi/ic_launcher.png" > /dev/null
+
+mkdir -p "$ANDROID_RES/mipmap-hdpi"
+sips -z 72 72 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-hdpi/ic_launcher_foreground.png" > /dev/null
+sips -z 72 72 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-hdpi/ic_launcher.png" > /dev/null
+
+mkdir -p "$ANDROID_RES/mipmap-xhdpi"
+sips -z 96 96 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-xhdpi/ic_launcher_foreground.png" > /dev/null
+sips -z 96 96 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-xhdpi/ic_launcher.png" > /dev/null
+
+mkdir -p "$ANDROID_RES/mipmap-xxhdpi"
+sips -z 144 144 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-xxhdpi/ic_launcher_foreground.png" > /dev/null
+sips -z 144 144 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-xxhdpi/ic_launcher.png" > /dev/null
+
+mkdir -p "$ANDROID_RES/mipmap-xxxhdpi"
+sips -z 192 192 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-xxxhdpi/ic_launcher_foreground.png" > /dev/null
+sips -z 192 192 "$SRC_TRANSPARENT" --out "$ANDROID_RES/mipmap-xxxhdpi/ic_launcher.png" > /dev/null
 
 echo "Writing Android XML files..."
 
