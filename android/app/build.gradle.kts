@@ -41,16 +41,19 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
+            keyAlias = keystoreProperties["keyAlias"]?.toString() ?: ""
+            keyPassword = keystoreProperties["keyPassword"]?.toString() ?: ""
             storeFile = keystoreProperties["storeFile"]?.let { file(it) }
-            storePassword = keystoreProperties["storePassword"] as String
+            storePassword = keystoreProperties["storePassword"]?.toString() ?: ""
         }
     }
 
     buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
         release {
-            isMinifyEnabled = false  // Keeps it safe for now
+            isMinifyEnabled = false
             isShrinkResources = false
             signingConfig = signingConfigs.getByName("release")
         }
