@@ -21,16 +21,29 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/simple-clock.git
+   git clone https://github.com/mini-mic/simple-clock.git
    cd simple-clock
    ```
 
-2. **Install dependencies:**
+2. **Accept Android Licenses:**
+   This is required before your first Android build.
+   ```bash
+   flutter doctor --android-licenses
+   ```
+
+3. **Install dependencies:**
+   This command will also attempt to generate `android/local.properties`.
    ```bash
    flutter pub get
    ```
 
-3. **Run the app:**
+4. **Troubleshooting local.properties:**
+   If the build fails complaining about `local.properties`, create `android/local.properties` and add your SDK path:
+   ```properties
+   sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
+   ```
+
+5. **Run the app:**
    ```bash
    flutter run
    ```
